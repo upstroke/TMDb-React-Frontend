@@ -2,7 +2,7 @@ import React from "react";
 import './detailsView.scss';
 import notAvailableIMG from "../../assets/not-available.png";
 import dateToLocale from '../../shared/dateToLocale';
-import {useParams, useHistory} from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import useTmdbApi from "../../shared/tmdbApi";
 
 function DetailsView(props) {
@@ -15,14 +15,14 @@ function DetailsView(props) {
       <>
         <div className="ui inverted vertical center aligned masthead segment">
           <div className="masthead-image">
-            <img src={detailsData.backdrop_path !==null ? `http://image.tmdb.org/t/p/original/${detailsData.backdrop_path}` : notAvailableIMG} />
+            <img src={detailsData.backdrop_path !==null ? `http://image.tmdb.org/t/p/original/${detailsData.backdrop_path}` : notAvailableIMG} alt="" />
           </div>
           <div className="ui text container">
             <h1 className="ui inverted header">
               {detailsData.title  ? detailsData.title : detailsData.name}
               {detailsData.poster_path
                 ? <div className="poster">
-                  <img src={`http://image.tmdb.org/t/p/w342/${detailsData.poster_path}`} />
+                  <img src={`http://image.tmdb.org/t/p/w342/${detailsData.poster_path}`} alt="" />
                 </div>
                 : null
               }
@@ -50,7 +50,7 @@ function DetailsView(props) {
 
             <h2 className="ui medium header">Homepage:</h2>
             <p>{detailsData.homepage
-              ? <a className="home-link" href={detailsData.homepage} target="_blank">{detailsData.homepage.replace('https://','')}</a>
+              ? <a className="home-link" href={detailsData.homepage} target="_blank" rel="noopener noreferrer">{detailsData.homepage.replace('https://','')}</a>
               : <small>keine Information vorhanden</small>
             }
             </p>

@@ -31,7 +31,7 @@ function CardItem(props) {
   return (
     <div className="card">
       <div className="image" onClick={() => history.push(`/details-view/${data.media_type}/${data.id}`)}>
-        <img src={data.backdrop_path !==null ? `http://image.tmdb.org/t/p/w342/${data.backdrop_path}` : notAvailableIMG} />
+        <img src={data.backdrop_path !==null ? `http://image.tmdb.org/t/p/w342/${data.backdrop_path}` : notAvailableIMG} alt="" />
         <div className={`ui top right attached label${data.media_type==='movie' ? ' blue' : ' teal'}`}>{data.media_type ? data.media_type : 'Discover'}</div>
       </div>
       <div className="content">

@@ -16,7 +16,8 @@ function CardList(props) {
       {cards && cards.map((card, index) => {
         if(index < props.amount){
           return <CardItem key={index} cardData={card} />
-        }}
+        }else return null
+      }
       )}
     </div>
   )

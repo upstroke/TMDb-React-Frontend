@@ -65,9 +65,9 @@ function App() {
       <footer className="ui bottom fixed inverted menu">
         <div className="ui inverted segment">
           <div className="ui inverted secondary text menu">
-            <a className="item">Conditions of Use</a>
-            <a className="item">Privacy Policy</a>
-            <a className="item" href="https://www.imdb.com/" target="_blank">Content: © by IMDb.com, Inc.</a>
+            <button className="item" >Conditions of Use</button>
+            <button className="item" >Privacy Policy</button>
+            <a className="item" href="https://www.imdb.com/" target="_blank" rel="noopener noreferrer">Content: © by IMDb.com, Inc.</a>
           </div>
         </div>
       </footer>

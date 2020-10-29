@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import './cardItemFeatured.scss';
 import useTmdbApi from '../../shared/tmdbApi'
 import dateToLocale from '../../shared/dateToLocale';
@@ -75,7 +75,7 @@ function CardItemFeatured(props) {
         <div className="spacer">
           <div className="content">
             <h3 className="ui dividing header">Webseite:</h3>
-            <p><a href={movie.homepage} target="_blank">{movie.homepage.replace('https://','')}</a></p>
+            <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">{movie.homepage.replace('https://','')}</a></p>
           </div>
         </div>
 

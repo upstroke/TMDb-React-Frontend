@@ -66,7 +66,7 @@ function Search() {
                 <div className="name">Filme</div>
                 <div className="results transition visible">
                   {searchResults  && searchResults.movie && searchResults.movie.map((element, index) =>
-                  <a className="result" key={index}
+                  <a className="holy result" key={index}
                      onClick={() => {
                        setVisible(false)
                        history.push(`/details-view/${element.media_type}/${element.id}`)}}>
@@ -85,7 +85,7 @@ function Search() {
                 <div className="name">TV-Shows</div>
                 <div className="results transition visible">
                   {searchResults && searchResults.tv && searchResults.tv.map((element, index) =>
-                    <a className="result" key={index}>
+                    <a className="holy result" key={index}>
                       <div className="content">
                         <div className="title">{element.name}</div>
                         <div className="description">

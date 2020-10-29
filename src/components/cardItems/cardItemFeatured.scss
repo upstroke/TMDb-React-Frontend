@@ -1,0 +1,47 @@
+.teaser.card {
+	width: 100%;
+	margin: 0 auto;
+
+	> .image {
+		cursor: pointer;
+		height: 350px;
+
+		img {
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.sub.header {
+		text-transform: none;
+	}
+
+	.content.has-header {
+		position: absolute;
+
+		.header {
+			color: white;
+			font-size: 2.5rem;
+		}
+	}
+
+	.releaseDate {
+		position: relative;
+		top: -1rem;
+	}
+
+	.equal.width.grid > .column {
+		text-align: center;
+	}
+
+	.companyIMG {
+		max-width: 100%;
+		max-height: 50%;
+	}
+
+	.ui.feed .column.cast {
+		padding-top: 10px;
+		padding-bottom: 10px;
+		line-height: 1;
+	}
+}

@@ -1,0 +1,41 @@
+.right.menu.searchbar {
+	width: 100%;
+
+	.item {
+		width: 100%;
+	}
+
+	.category.search {
+		width: 100%;
+		margin-left: auto;
+
+		@media only screen and (min-width: 991px) {
+			width: 80%
+		}
+	}
+
+	.ui.icon.input {
+		position: absolute;
+		right: 0;
+		top: -8px;
+		width: 50%;
+	}
+
+	.ui.category.search .results {
+		width: 100%;
+
+		.category .results {
+			width: 100%
+		}
+	}
+
+	.ui[class*="left aligned"].search > .results {
+		top: 5px;
+		max-height: calc(100vh - 140px);
+		overflow: scroll;
+
+		.name {
+			margin-top: 6px;
+		}
+	}
+}

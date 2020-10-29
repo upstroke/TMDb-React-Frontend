@@ -1,0 +1,33 @@
+/*loads everything from Semantic-UI */
+@import "~semantic-ui-scss/semantic-ui";
+
+#root {
+	.fixed.menu {
+		z-index: 1000;
+	}
+
+	main {
+		position: relative;
+		top: 6rem;
+		padding-bottom: 10rem;
+	}
+
+	footer {
+		z-index: 1000;
+		min-height: 60px;
+
+		.ui.segment {
+			flex: 1
+		}
+
+		.secondary.menu {
+			justify-content: center;
+		}
+	}
+
+	.spacer {
+		margin: 1em 0em;
+		padding: 1em 0em;
+		position: relative;
+	}
+}

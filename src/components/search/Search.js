@@ -58,8 +58,9 @@ function Search(props) {
                 <div className="name">Filme</div>
                 <div className="results transition visible">
                   {searchResults  && searchResults.movie && searchResults.movie.map((element, index) =>
-                  <a className="holy result" key={index}
-                     onClick={() => {
+                  <a href="/details-view" className="holy result" key={index}
+                     onClick={(event) => {
+                       event.preventDefault()
                        props.updateVisible(false)
                        history.push(`/details-view/${element.media_type}/${element.id}`)}}>
                     <div className="content">
@@ -77,8 +78,9 @@ function Search(props) {
                 <div className="name">TV-Shows</div>
                 <div className={"results transition"}>
                   {searchResults && searchResults.tv && searchResults.tv.map((element, index) =>
-                    <a className="holy result" key={index}
-                       onClick={() => {
+                    <a href="/details-view" className="holy result" key={index}
+                       onClick={(event) => {
+                         event.preventDefault()
                          props.updateVisible(false)
                          history.push(`/details-view/${element.media_type}/${element.id}`)}}>
                       <div className="content">

@@ -59,8 +59,9 @@ function DetailsView(props) {
             {detailsData.release_date ? dateToLocale(detailsData.release_date) : null}
             {detailsData.first_air_date ? dateToLocale(detailsData.first_air_date ) : null}
             {!detailsData.release_date || !detailsData.first_air_date ? null : <p><small>keine Information vorhanden</small></p>}
+
             <h2 className="ui medium header">Produktion:</h2>
-            {detailsData['production_companies']
+            {detailsData['production_companies'].length
               ? <ul>{detailsData['production_companies'].map((company, index) => <li key={index}>{company.name}</li>)}</ul>
               : <p><small>keine Information vorhanden</small></p>
             }

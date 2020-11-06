@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import './App.scss';
 import Search from './components/search/Search'
 import CardList from './components/cardList/cardList'

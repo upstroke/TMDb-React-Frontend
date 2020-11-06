@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import './search.scss';
-import {useHistory} from 'react-router-dom';
 import dateToLocale from "../../shared/dateToLocale";
 import {tmdbApi} from "../../shared/tmdbApi"
+import {useHistory} from 'react-router-dom';
 
-function Search() {
+
+function Search(props) {
   const history = useHistory()
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState('')
-  const [visible, setVisible] = useState(false)
   const [totalResults, setTotalResults] = useState(0)
 
   const onSearch = (term) => {
@@ -16,7 +16,7 @@ function Search() {
     if(term.length > 3){
       tmdbApi('get', 'search', 'multi', term, (data) => {onResult({data})})
     }else {
-      setVisible(false)
+      props.updateVisible(false)
       setSearchResults('')
       setTotalResults(0)
     }
@@ -24,10 +24,9 @@ function Search() {
 
   let onResult = (response) => {
     setTotalResults(parseInt(response.data['total_results']))
-    // console.log('reslutCount: ',totalResults)
-    if(totalResults > 0){
-      // console.log('results: ',response.data['results'][0])
-      setVisible(true)
+      // console.log('reslutCount: ',totalResults)
+    if(response.data.results.length > 0){
+      props.updateVisible(true)
 
       // group response by media type
       const groupBy = (array, key) => {
@@ -37,38 +36,31 @@ function Search() {
         }, {})
       }
       setSearchResults(groupBy(response.data['results'], 'media_type'))
-    }
-  }
-
-  const hasResult = () => {
-    if(parseInt(totalResults) !== 0){
-      setVisible(true)
     }else {
-      setVisible(false)
+      props.updateVisible(false)
     }
   }
 
   return (
     <>
-      <div className="right menu searchbar"
-           onMouseLeave={() => setVisible(false)}
-           onMouseEnter={() => hasResult()}>
+      <div className="right menu searchbar">
         <div className="item">
           <div className="ui left aligned transparent category search">
             <div className="ui icon transparent inverted input">
               <input className="prompt" type="text" placeholder="Film oder TV-Serie finden"
                      value={searchTerm}
-                     onChange={(e)=>{onSearch(e.target.value)}} />
+                     onChange={(e)=>{onSearch(e.target.value)}}
+                     onMouseEnter={totalResults > 0 ? ()=>props.updateVisible(true) : null} />
               <i className="search icon"></i>
             </div>
-            <div className={visible === true ? "results transition visible" : "results transition"}>
-              <div className="category">
+            <div className={props.visible === true ? "results transition visible" : "results transition"} onMouseLeave={()=>props.updateVisible(false)}>
+              <div className={`category ${searchResults.movie ? '' : 'hidden'}`}>
                 <div className="name">Filme</div>
                 <div className="results transition visible">
                   {searchResults  && searchResults.movie && searchResults.movie.map((element, index) =>
                   <a className="holy result" key={index}
                      onClick={() => {
-                       setVisible(false)
+                       props.updateVisible(false)
                        history.push(`/details-view/${element.media_type}/${element.id}`)}}>
                     <div className="content">
                       <div className="title">{element.title}</div>
@@ -81,11 +73,14 @@ function Search() {
                 </div>
               </div>
 
-              <div className="category">
+              <div className={`category ${searchResults.tv ? '' : 'hidden'}`}>
                 <div className="name">TV-Shows</div>
-                <div className="results transition visible">
+                <div className={"results transition"}>
                   {searchResults && searchResults.tv && searchResults.tv.map((element, index) =>
-                    <a className="holy result" key={index}>
+                    <a className="holy result" key={index}
+                       onClick={() => {
+                         props.updateVisible(false)
+                         history.push(`/details-view/${element.media_type}/${element.id}`)}}>
                       <div className="content">
                         <div className="title">{element.name}</div>
                         <div className="description">

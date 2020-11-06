@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.scss';
 import Search from './components/search/Search'
 import CardList from './components/cardList/cardList'
@@ -6,8 +6,12 @@ import CardItemFeatured from './components/cardItems/cardItemFeatured'
 import DetailsView from './components/detailsView/DetailsView'
 import {Switch, Route, Redirect, NavLink} from 'react-router-dom';
 
-
 function App() {
+  const [visible, setVisible] = useState(false)
+
+  let updateVisible = (value) => {
+    setVisible(value)
+  }
 
   return (
     <>
@@ -22,7 +26,7 @@ function App() {
           <NavLink to="/tv-shows" className="item" activeClassName="active">
             <i className="tv icon"></i> TV-Shows
           </NavLink>
-          <Search />
+          <Search visible={visible} updateVisible={updateVisible} />
         </div>
       </div>
 

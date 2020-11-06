@@ -37,8 +37,7 @@ function App() {
         </Route>
         <Route path="/home">
           <main className="ui container">
-            <h1 className="ui dividing header">Seite Home</h1>
-            <h2 className="ui dividing header right">Discover</h2>
+            <h2 className="ui dividing header">Discover</h2>
             <div className="spacer">
               <p>Discover movies by different types of data like average rating, number of votes, genres and certifications.</p>
             </div>
@@ -49,15 +48,13 @@ function App() {
         </Route>
         <Route path="/movies">
             <main className="ui container">
-            <h1 className="ui dividing header">Filme</h1>
-            <h3 className="ui header">Top Rated</h3>
+            <h2 className="ui dividing header">Top Rated</h2>
             <CardList cardsDataObj={{method: 'get',path: 'trending',cat: 'movie/week'}} amount={18}/>
           </main>
         </Route>
         <Route path="/tv-shows">
           <main className="ui container">
-            <h1 className="ui dividing header">TV-Shows</h1>
-            <h3 className="ui header">What's on TV</h3>
+            <h2 className="ui header">What's on TV</h2>
             <CardList cardsDataObj={{method: 'get',path: 'trending',cat: 'tv/week'}} amount={18}/>
           </main>
         </Route>

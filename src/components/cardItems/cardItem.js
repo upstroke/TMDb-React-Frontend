@@ -40,7 +40,7 @@ function CardItem(props) {
           <span className="date">{data.release_date ? dateToLocale(data.release_date) : dateToLocale(data.first_air_date)}</span>
         </div>
         <div className="description">
-          {data.overview}
+          {data.overview ? <p>{data.overview}</p> : <p>keine Informationen vorhanden</p>}
         </div>
       </div>
       <div className="extra content">

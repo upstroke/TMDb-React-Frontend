@@ -24,10 +24,11 @@ function CardItemFeatured(props) {
     <div className="ui teaser card">
       <div className="image" onClick={() => history.push(`/details-view/movie/${movie.id}`)}>
         <img src={`http://image.tmdb.org/t/p/w780/${movie.backdrop_path}`} alt="" />
+        <div className={`ui top right attached label${movie.release_date ? ' blue' : ' teal'}`}>{movie.release_date ? 'movie' : 'tv'}</div>
       </div>
       <div className="content has-header">
         <div className="header">
-          {movie.title}
+          {movie.original_title ? movie.original_title : movie.original_name}
         </div>
       </div>
       <div className="content">
@@ -40,27 +41,26 @@ function CardItemFeatured(props) {
         <div className="ui feed">
           <div className="event">
             <div className="content">
-              <h2>{movie.original_title}</h2>
+              <h2>{movie.original_title ? movie.original_title : movie.original_name}</h2>
               <span className="releaseDate">
-                <strong>Erschienen: </strong>{dateToLocale(movie.release_date)}
+                <strong>Erschienen: </strong>{movie.release_date ? dateToLocale(movie.release_date) : dateToLocale(movie.first_air_date)}
               </span>
             </div>
           </div>
-          <div className="content">
-            <div className="ui equal width grid">
-              {movie['production_companies'].map((company, index) =>
-                <div className="column" key={index}>
-                  <img className="companyIMG" src={company.logo_path !==null ? `http://image.tmdb.org/t/p/w92/${company.logo_path}` : notAvailableIMG} alt="" />
-                </div>
-              )}
+          <div className="event">
+            <div className="content">
+              <div className="description">
+                {movie.overview ? <p>{movie.overview}</p> : <p>keine Informationen vorhanden</p>}
+              </div>
             </div>
           </div>
+          <div className="ui hidden divider"></div>
           <div className="event">
             <div className="content">
               <div className="summary">
                 <h3 className="ui dividing header">Cast:</h3>
 
-                <div className="ui grid">
+                <div className={`ui grid${movieCast.cast.length > 12 ? ' scroller' : null}`}>
                   {movieCast.cast.map((element,index) =>
                   <div className="four wide column cast" key={index}>
                     <span className="header">{element.character}</span><br />

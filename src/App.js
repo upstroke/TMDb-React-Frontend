@@ -43,19 +43,23 @@ function App() {
             </div>
             <CardList cardsDataObj={{method: 'get',path: 'trending',cat: 'all/day'}} amount={6}/>
             <h2 className="ui dividing header">Featured Today</h2>
-            <CardItemFeatured cardDataObj={{method: 'get',path: 'movie',cat: '458576'}} />
+            <CardItemFeatured cardDataObj={{method: 'get',path: 'tv',cat: '62286'}} />
           </main>
         </Route>
         <Route path="/movies">
             <main className="ui container">
             <h2 className="ui dividing header">Top Rated</h2>
             <CardList cardsDataObj={{method: 'get',path: 'trending',cat: 'movie/week'}} amount={18}/>
+              <h2 className="ui dividing header">Featured Today</h2>
+              <CardItemFeatured cardDataObj={{method: 'get',path: 'movie',cat: '181808'}} />
           </main>
         </Route>
         <Route path="/tv-shows">
           <main className="ui container">
             <h2 className="ui header">What's on TV</h2>
             <CardList cardsDataObj={{method: 'get',path: 'trending',cat: 'tv/week'}} amount={18}/>
+            <h2 className="ui dividing header">Featured Today</h2>
+            <CardItemFeatured cardDataObj={{method: 'get',path: 'tv',cat: '67198'}} />
           </main>
         </Route>
         <Route exact path="">

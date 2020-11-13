@@ -30,6 +30,8 @@ function App() {
         setTvShowAmount(amount)
         // console.log('amount:', tvShowAmount)
         break
+      default:
+        break
     }
   }
 

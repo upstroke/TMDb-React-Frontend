@@ -29,13 +29,13 @@ function CardItem(props) {
   }
 
   return (
-    <div className="card">
-      <div className="image" onClick={() => history.push(`/details-view/${data.media_type}/${data.id}`)}>
-        <img src={data.backdrop_path !==null ? `http://image.tmdb.org/t/p/w342/${data.backdrop_path}` : notAvailableIMG} alt="" />
+    <a href="/" className="card" onClick={(e) => {e.preventDefault(); history.push(`/details-view/${data.media_type}/${data.id}`)}}>
+      <div className="image">
+        <img src={data.backdrop_path !==null ? `http://image.tmdb.org/t/p/w342/${data.backdrop_path}` : notAvailableIMG} alt="" title={data.name ? data.name : data.title} />
         <div className={`ui top right attached label${data.media_type==='movie' ? ' blue' : ' teal'}`}>{data.media_type ? data.media_type : 'Discover'}</div>
       </div>
       <div className="content">
-        <div className="header">{data.name ? data.name : data.title}</div>
+        <div className="header" title={data.name ? data.name : data.title}>{data.name ? data.name : data.title}</div>
         <div className="meta">
           <span className="date">{data.release_date ? dateToLocale(data.release_date) : dateToLocale(data.first_air_date)}</span>
         </div>
@@ -49,11 +49,11 @@ function CardItem(props) {
           <i className="yellow star icon" key={item}></i>
         )} <small className="ui label">{Math.round(data.vote_average)}</small>
       </div>
-      <div className="ui bottom attached button" onClick={() => history.push(`/details-view/${data.media_type}/${data.id}`)}>
+      <button className="ui bottom attached button">
         <i className="add icon"></i>
         Weitere Informationen
-      </div>
-    </div>
+      </button>
+    </a>
   )
 }
 

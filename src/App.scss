@@ -30,4 +30,18 @@
 		padding: 1em 0em;
 		position: relative;
 	}
+
+	button.link {
+		border: none;
+		background: none;
+		color: #4183C4;
+		cursor: pointer;
+
+		&:hover,
+		&:active,
+		&:focus {
+			outline: none;
+			color: #1e70bf;
+		}
+	}
 }

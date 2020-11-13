@@ -1,0 +1,11 @@
+.card > *:not(a) {
+	color: initial;
+}
+
+a.card.teaser:hover {
+	transform: translateY(0);
+}
+
+.card > .content {
+	min-height: 150px;
+}

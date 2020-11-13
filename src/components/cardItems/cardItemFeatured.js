@@ -2,27 +2,26 @@ import React from "react";
 import './cardItemFeatured.scss';
 import useTmdbApi from '../../shared/tmdbApi'
 import dateToLocale from '../../shared/dateToLocale';
-import notAvailableIMG from '../../assets/not-available.png'
 import {useHistory} from 'react-router-dom';
 
 function CardItemFeatured(props) {
   const movie = useTmdbApi(props.cardDataObj.method,props.cardDataObj.path,props.cardDataObj.cat)
-  const movieCast = useTmdbApi('get', `movie/${props.cardDataObj.cat}`,'credits')
+  const movieCast = useTmdbApi('get', `${props.cardDataObj.path}/${props.cardDataObj.cat}`,'credits')
   const history = useHistory()
 
   if(!movie || !movieCast){
     return (
       <div className="ui teaser card">
         <div className="content">
-          <div className="ui active centered inline loader"></div>
+          <div className="ui active text loader">Loading</div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="ui teaser card">
-      <div className="image" onClick={() => history.push(`/details-view/movie/${movie.id}`)}>
+    <a href="/" className="ui teaser card" onClick={(e) => {e.preventDefault(); history.push(`/details-view/${props.cardDataObj.path}/${movie.id}`)}}>
+      <div className="image">
         <img src={`http://image.tmdb.org/t/p/w780/${movie.backdrop_path}`} alt="" />
         <div className={`ui top right attached label${movie.release_date ? ' blue' : ' teal'}`}>{movie.release_date ? 'movie' : 'tv'}</div>
       </div>
@@ -60,7 +59,7 @@ function CardItemFeatured(props) {
               <div className="summary">
                 <h3 className="ui dividing header">Cast:</h3>
 
-                <div className={`ui grid${movieCast.cast.length > 12 ? ' scroller' : null}`}>
+                <div className={`ui grid${movieCast.cast.length > 12 ? ' scroller' : ''}`}>
                   {movieCast.cast.map((element,index) =>
                   <div className="four wide column cast" key={index}>
                     <span className="header">{element.character}</span><br />
@@ -75,18 +74,18 @@ function CardItemFeatured(props) {
         <div className="spacer">
           <div className="content">
             <h3 className="ui dividing header">Webseite:</h3>
-            <p><a href={movie.homepage} target="_blank" rel="noopener noreferrer">{movie.homepage.replace('https://','')}</a></p>
+            <p><button className="link" href={movie.homepage} target="_blank" rel="noopener noreferrer">{movie.homepage.replace('https://','')}</button></p>
           </div>
         </div>
 
       </div>
 
-        <div className="ui bottom attached button" onClick={() => history.push(`/details-view/movie/${movie.id}`)}>
+        <button className="ui bottom attached button">
           <i className="add icon"></i>
           Weitere Informationen
-        </div>
+        </button>
 
-    </div>
+    </a>
   )
 }
 
